@@ -1,0 +1,126 @@
+\documentclass[12pt,openany,oneside,a4paper]{abntex2}
+\usepackage[portuguese]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{circuitikz}
+\usepackage{icomma}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{circuitikz}
+
+\titulo{Atividade Teórica da C2}
+\autor{Matheus Amaral da Costa}
+\data{Junho de 2025}
+\instituicao{
+  Centro Universitário FAESA
+  \par
+  Engenharia da Computação}
+\local{Vitória, ES}
+
+\begin{document}
+
+\imprimircapa
+\imprimirfolhaderosto*
+
+\tableofcontents
+
+\chapter{Análise}
+\section{Considerações Iniciais}
+    O circuito apresenta uma configuração do tipo \textbf{Amplificador Operacional Somador Inversor}. A partir disso, para entender como cada \textit{bit} afeta a saída de forma individual será usada apenas uma entrada lógica ativa por vez (Nível lógico no estado \textit{High}), em que para cada caso as palavras binárias utilizadas serão \textbf{0001}, \textbf{0010}, \textbf{0100} e \textbf{1000}. 
+    \\ \\
+    Cada palavra binária supracitada corresponde aos valores decimais \textbf{1}~($2^0$), \textbf{2}~($2^1$), \textbf{4}~($2^2$) e \textbf{8}~($2^3$), respectivamente.
+    \\ \\
+    Por fim, cada valor decimal será atribuído à tensão $\mathbf{V}_{o}$ para cada caso.
+
+\section{Representação do Circuito}
+\begin{center}
+    \begin{tikzpicture}
+    	% Paths, nodes and wires:
+    	\draw (4, 11.5) -- (3, 11.5);
+    	\draw (4, 11.5) to[european resistor, l={$R1$}, label distance=0.02cm] (5.25, 11.5);
+    	\draw node[ocirc, xscale=0.82, yscale=0.82] (N1) at (3, 11.5) {} node[anchor=south] at (N1.text){$B0$};
+    	\draw (4, 10.5) -- (3, 10.5);
+    	\draw (4, 10.5) to[european resistor, l={$R2$}, label distance=0.02cm] (5.25, 10.5);
+    	\draw node[ocirc, xscale=0.82, yscale=0.82] (N2) at (3, 10.5) {} node[anchor=south] at (N2.text){$B1$};
+    	\draw (4, 9.5) -- (3, 9.5);
+    	\draw (4, 9.5) to[european resistor, l={$R3$}, label distance=0.02cm] (5.25, 9.5);
+    	\draw node[ocirc, xscale=0.82, yscale=0.82] (N3) at (3, 9.5) {} node[anchor=south] at (N3.text){$B2$};
+    	\draw (4, 8.5) -- (3, 8.5);
+    	\draw (4, 8.5) to[european resistor, l={$R4$}, label distance=0.02cm] (5.25, 8.5);
+    	\draw node[ocirc, xscale=0.82, yscale=0.82] (N4) at (3, 8.5) {} node[anchor=south] at (N4.text){$B3$};
+    	\draw (6.75, 11.5) to[european resistor, l={$10k$}, label distance=0.02cm] (8, 11.5);
+    	\draw node[op amp, xscale=0.38, yscale=0.38] at (7.452, 10.314) {};
+    	\draw (5.25, 10.5) -- (7, 10.5);
+    	\draw (6.75, 11.5) -- (6.5, 11.5) -| (6.5, 10.5);
+    	\draw node[ground, xscale=0.6, yscale=0.6] at (6.75, 10) {};
+    	\draw (7, 10.128) -| (6.75, 10);
+    	\draw (5.25, 11.5) -- (5.5, 11.5) -| (5.5, 10.5);
+    	\draw (5.25, 9.5) -- (5.5, 9.5) -| (5.5, 10.5);
+    	\draw (5.25, 8.5) -- (5.5, 8.5) -| (5.5, 9.5);
+    	\draw (8.54, 10.314) to[european resistor, l={$10k$}, label distance=0.02cm] (9.79, 10.314);
+    	\draw (10.25, 11.5) to[european resistor, l={$10k$}, label distance=0.02cm] (11.5, 11.5);
+    	\draw (7.904, 10.314) -- (8.54, 10.314);
+    	\draw (8, 11.5) -- (8.3, 11.5) -- (8.3, 10.3);
+    	\draw node[op amp, xscale=0.38, yscale=0.38] at (11.1, 10.128) {};
+    	\draw (9.79, 10.314) -| (10.7, 10.3);
+    	\draw node[ground, xscale=0.6, yscale=0.6] at (10.4, 9.8) {};
+    	\draw (10.648, 9.941) -| (10.4, 9.8);
+    	\draw (10.3, 11.5) |- (10, 11.5) -- (10, 10.3);
+    	\draw node[ocirc, xscale=0.82, yscale=0.82] (N5) at (12.268, 10.123) {} node[anchor=south] at (N5.text){$Vo$};
+    	\draw (11.552, 10.128) -| (12.212, 10.119);
+    	\draw (11.5, 11.5) -- (11.75, 11.5) -- (11.75, 10.125);
+    	\draw node[circ] at (5.5, 10.5) {};
+    	\draw node[circ] at (5.5, 9.5) {};
+    	\draw node[circ] at (6.5, 10.5) {};
+    	\draw node[circ] at (8.3, 10.3) {};
+    	\draw node[circ] at (10, 10.3) {};
+    	\draw node[circ] at (11.75, 10.125) {};
+    \end{tikzpicture}
+    \\
+    \textbf{Figura 1 - Circuito Elétrico}
+\end{center}
+
+\section{Dados do Circuito}
+\begin{itemize}
+    \item $V_{0} = 1\,V$ (Para 0001)
+    \item $V_{0} = 2\,V$ (Para 0010)
+    \item $V_{0} = 4\,V$ (Para 0100)
+    \item $V_{0} = 8\,V$ (Para 1000)
+    \item $R_{f} = 10\,{k}\Omega$
+\end{itemize}
+
+\section{Expressão Geral}
+\[
+V_{o} = - \left( \frac{R_{f}}{R_{1}} B_{0} + \frac{R_{f}}{R_{2}} B_{1} + \cdots + \frac{R_{f}}{R_{n}} B_{n} \right)
+\]
+
+\section{Cálculo de $R_1$}
+Para a palavra binária \textbf{0001} apenas o $B_{0}$ será ativado, correspondendo ao valor de 3{,}3 V e dessa forma temos: 
+\\
+\[
+\frac{R_{f}}{R_{1}} \cdot B_{0} = V_{o} \implies \frac{10k}{R_{1}} \cdot 3,3 = 1 \implies \tikz[baseline]{\node[draw=red, thick, rounded corners] {$R_{1} = 33 \text\,{k}\Omega$};}
+\]
+
+\section{Cálculo de $R_2$}
+Para a palavra binária \textbf{0010} apenas o $B_{1}$ será ativado, correspondendo ao valor de 3{,}3 V e dessa forma temos: 
+\\
+\[
+\frac{R_{f}}{R_{2}} \cdot B_{1} = V_{o} \implies \frac{10k}{R_{2}} \cdot 3,3 = 2 \implies \tikz[baseline]{\node[draw=red, thick, rounded corners] {$R_{2} = 16,5 \text\,{k}\Omega$};}
+\]
+
+\section{Cálculo de $R_3$}
+Para a palavra binária \textbf{0100} apenas o $B_{2}$ será ativado, correspondendo ao valor de 3{,}3 V e dessa forma temos: 
+\\
+\[
+\frac{R_{f}}{R_{3}} \cdot B_{2} = V_{o} \implies \frac{10k}{R_{3}} \cdot 3,3 = 4 \implies \tikz[baseline]{\node[draw=red, thick, rounded corners] {$R_{3} = 8,25 \text\,{k}\Omega$};}
+\]
+
+\section{Cálculo de $R_4$}
+Para a palavra binária \textbf{1000} apenas o $B_{3}$ será ativado, correspondendo ao valor de 3{,}3 V e dessa forma temos: 
+\\
+\[
+\frac{R_{f}}{R_{4}} \cdot B_{3} = V_{o} \implies \frac{10k}{R_{4}} \cdot 3,3 = 8 \implies \tikz[baseline]{\node[draw=red, thick, rounded corners] {$R_{4} = 4,125 \text\,{k}\Omega$};}
+\]
+
+\end{document}
